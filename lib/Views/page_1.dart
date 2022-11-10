@@ -18,12 +18,12 @@ class CounterPage extends StatelessWidget {
                 child: const Icon(CupertinoIcons.add)),
             const SizedBox(height: 10),
             FloatingActionButton(
-                onPressed: () => context.read<Counter>().decrement(),
-                child: const Icon(CupertinoIcons.minus)),
+                onPressed: () => context.read<Counter>().reset(),
+                child: const Icon(Icons.exposure_zero)),
             const SizedBox(height: 10),
             FloatingActionButton(
-                onPressed: () => context.read<Counter>().reset(),
-                child: const Text("0")),
+                onPressed: () => context.read<Counter>().decrement(),
+                child: const Icon(CupertinoIcons.minus)),
           ],
         ),
         appBar: AppBar(
