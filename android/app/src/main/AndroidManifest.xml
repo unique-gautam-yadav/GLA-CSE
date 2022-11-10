@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.glau">
    <application
-        android:label="glau"
+        android:label="GLAU"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
