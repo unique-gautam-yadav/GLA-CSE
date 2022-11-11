@@ -1,6 +1,8 @@
+import 'package:animated_theme_switcher/animated_theme_switcher.dart';
 import 'package:flutter/material.dart';
 import 'package:glau/Providers/provider.dart';
 import 'package:glau/Views/page_1.dart';
+import 'package:glau/utils/my_themes.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -22,9 +24,12 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      initialRoute: "/home",
-      routes: {"/home": (context) => const CounterPage()},
+    return ThemeProvider(
+      initTheme: MyThemes.lightTheme(context),
+      builder: (_, theme) => MaterialApp(
+        initialRoute: "/home",
+        routes: {"/home": (context) => const CounterPage()},
+      ),
     );
   }
 }
