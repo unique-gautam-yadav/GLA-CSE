@@ -5,6 +5,8 @@ import 'package:glau/Providers/provider.dart';
 import 'package:glau/utils/my_themes.dart';
 import 'package:provider/provider.dart';
 
+import '../UI components/appbar.dart';
+
 class CounterPage extends StatefulWidget {
   const CounterPage({super.key});
 
@@ -22,44 +24,41 @@ class _CounterPageState extends State<CounterPage> {
           children: [
             FloatingActionButton(
                 onPressed: () => context.read<Counter>().increment(),
-                child: const Icon(CupertinoIcons.add)),
+                child: const Icon(
+                  CupertinoIcons.add,
+                  color: Colors.white,
+                )),
             const SizedBox(height: 10),
             FloatingActionButton(
                 onPressed: () => context.read<Counter>().reset(),
-                child: const Icon(Icons.exposure_zero)),
+                child: const Icon(Icons.exposure_zero, color: Colors.white)),
             const SizedBox(height: 10),
             FloatingActionButton(
                 onPressed: () => context.read<Counter>().decrement(),
-                child: const Icon(CupertinoIcons.minus)),
+                child: const Icon(CupertinoIcons.minus, color: Colors.white)),
           ],
         ),
-        appBar: AppBar(actions: [
-          ThemeSwitcher.withTheme(
-            clipper: const ThemeSwitcherCircleClipper(),
-            builder: (_, switcher, theme) => IconButton(
-              icon: theme.brightness == Brightness.light
-                  ? const Icon(CupertinoIcons.sun_max_fill)
-                  : const Icon(CupertinoIcons.moon_fill),
-              onPressed: () {
-                switcher.changeTheme(
-                    theme: theme.brightness == Brightness.light
-                        ? MyThemes.darkTheme(context)
-                        : MyThemes.lightTheme(context));
-              },
-            ),
-          ),
-        ], title: const Text("Counter Application")),
-        body: Center(
+        body: SafeArea(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Text("Your counter values : ${context.watch<Counter>().count}",
-                  style: const TextStyle(fontSize: 14)),
-              Text(
-                "${context.watch<Counter>().count}",
-                style: const TextStyle(fontSize: 42),
-              )
+              const TopBar(),
+              Expanded(
+                child: Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Text(
+                          "Your counter values : ${context.watch<Counter>().count}",
+                          style: const TextStyle(fontSize: 14)),
+                      Text(
+                        "${context.watch<Counter>().count}",
+                        style: const TextStyle(fontSize: 42),
+                      )
+                    ],
+                  ),
+                ),
+              ),
             ],
           ),
         ),

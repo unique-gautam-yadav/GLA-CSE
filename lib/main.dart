@@ -28,6 +28,7 @@ class _MyAppState extends State<MyApp> {
       initTheme: MyThemes.lightTheme(context),
       builder: (_, theme) => MaterialApp(
         initialRoute: "/home",
+        debugShowCheckedModeBanner: false,
         routes: {"/home": (context) => const CounterPage()},
       ),
     );
