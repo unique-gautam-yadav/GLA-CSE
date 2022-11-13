@@ -7,7 +7,7 @@ class MyThemes {
         brightness: Brightness.light,
         fontFamily: GoogleFonts.poppins().fontFamily,
         canvasColor: creamColor,
-        cardColor: Colors.white,
+        cardColor: creamColor2,
         colorScheme: ColorScheme.light(
             secondary: darkBlueishColor, onSecondary: darkBlueishColor),
         primarySwatch: Colors.deepPurple,
@@ -26,7 +26,7 @@ class MyThemes {
         brightness: Brightness.dark,
         canvasColor: darkCreamColor,
         fontFamily: GoogleFonts.poppins().fontFamily,
-        cardColor: Colors.black,
+        cardColor: darkCreamColor2,
         colorScheme: ColorScheme.dark(
             secondary: lightBlueishColor, onSecondary: Colors.white),
         primarySwatch: Colors.deepPurple,
@@ -44,4 +44,6 @@ class MyThemes {
   static Color darkCreamColor = const Color.fromARGB(255, 46, 68, 80);
   static Color darkBlueishColor = const Color(0Xff403b58);
   static Color lightBlueishColor = const Color.fromARGB(255, 33, 46, 117);
+  static Color creamColor2 = const Color.fromARGB(255, 225, 236, 255);
+  static Color darkCreamColor2 = const Color.fromARGB(255, 5, 10, 19);
 }

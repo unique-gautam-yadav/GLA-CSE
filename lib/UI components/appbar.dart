@@ -1,26 +1,34 @@
 import 'package:animated_theme_switcher/animated_theme_switcher.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:glau/Providers/provider.dart';
+import 'package:provider/provider.dart';
 
 import '../utils/my_themes.dart';
 
 class TopBar extends StatelessWidget {
   const TopBar({
     Key? key,
+    required this.scaffoldKey,
   }) : super(key: key);
-
+  final GlobalKey<ScaffoldState> scaffoldKey;
   @override
   Widget build(BuildContext context) {
     return Card(
       color: Theme.of(context).canvasColor,
       elevation: 1,
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           SizedBox(
-            width: MediaQuery.of(context).size.width - 60,
-            child: const Center(
+            width: 50,
+            child: IconButton(
+                onPressed: () => scaffoldKey.currentState!.openDrawer(),
+                icon: const Icon(Icons.menu_rounded)),
+          ),
+          const SizedBox(
+            child: Center(
               child: Text(
                 "GLA University",
                 style: TextStyle(
@@ -31,7 +39,7 @@ class TopBar extends StatelessWidget {
             ),
           ),
           SizedBox(
-            width: 30,
+            width: 50,
             child: ThemeSwitcher.withTheme(
               clipper: const ThemeSwitcherCircleClipper(),
               builder: (_, switcher, theme) => IconButton(
@@ -48,6 +56,21 @@ class TopBar extends StatelessWidget {
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class AppDrawer extends StatelessWidget {
+  const AppDrawer({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return const Drawer(
+      child: SafeArea(
+        child: Text("Gautam Yadav"),
       ),
     );
   }
