@@ -28,7 +28,8 @@ class _CounterPageState extends State<CounterPage> {
               children: [
                 TopBar(scaffoldKey: scaffoldKey),
                 Padding(
-                  padding: const EdgeInsets.only(left: 12, right: 12, top: 12),
+                  padding: const EdgeInsets.only(
+                      left: 12, right: 12, top: 12, bottom: 12),
                   child: Column(
                     children: [
                       SizedBox(
@@ -151,21 +152,51 @@ class _CounterPageState extends State<CounterPage> {
                       ),
                       const SizedBox(height: 4),
                       Card(
-                        child: Column(
-                          children: [
-                            const Text("Today's TimeTable",
-                                style: TextStyle(fontSize: 15)),
-                            const Divider(),
-                            ListView.builder(
-                              scrollDirection: Axis.vertical,
-                              shrinkWrap: true,
-                              itemCount: 20,
-                              itemBuilder: (context, index) {
-                                return const SizedBox(height: 20);
-                              },
-                            ),
-                            const ListTile()
-                          ],
+                        child: Padding(
+                          padding: const EdgeInsets.only(top: 12),
+                          child: Column(
+                            children: [
+                              const Text("Today's TimeTable",
+                                  style: TextStyle(fontSize: 15)),
+                              const Divider(thickness: 2),
+                              for (int i = 0; i < 5; i++)
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    ListTile(
+                                      title: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text("Lecture - ${i + 1}"),
+                                          const Text("(10:00 AM - 11:00 AM)")
+                                        ],
+                                      ),
+                                      subtitle: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: const [
+                                          Text("SubCode/Type/Block/Room/Mode"),
+                                          Text("Full Subject Name"),
+                                        ],
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.only(left: 17),
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: const [
+                                          Text("Facylty : Faculty Name"),
+                                          Text("Status : Status of the Lecture")
+                                        ],
+                                      ),
+                                    ),
+                                    const Divider()
+                                  ],
+                                ),
+                            ],
+                          ),
                         ),
                       )
                     ],

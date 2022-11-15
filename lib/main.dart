@@ -11,11 +11,8 @@ void main() {
       providers: [
         ChangeNotifierProvider(create: (_) => Counter()),
       ],
-      child: const MyApp(
-        
-      ),
+      child: const MyApp(),
     ),
-    
   );
 }
 
@@ -30,7 +27,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return ThemeProvider(
-      initTheme: MyThemes.darkTheme(context),
+      initTheme: MyThemes.lightTheme(context),
       builder: (_, theme) => MaterialApp(
         initialRoute: "/home",
         debugShowCheckedModeBanner: false,

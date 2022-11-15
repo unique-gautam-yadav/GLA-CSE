@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 class MyThemes {
   static ThemeData lightTheme(BuildContext context) => ThemeData(
         useMaterial3: true,
+        cardTheme: CardTheme(color: creamColor2),
         primaryColor: Colors.deepPurple,
         brightness: Brightness.light,
         fontFamily: GoogleFonts.poppins().fontFamily,
@@ -24,6 +25,7 @@ class MyThemes {
       );
   static ThemeData darkTheme(BuildContext context) => ThemeData(
         useMaterial3: true,
+        cardTheme: CardTheme(color: darkCreamColor2),
         primaryColor: Colors.deepPurple,
         brightness: Brightness.dark,
         canvasColor: darkCreamColor,

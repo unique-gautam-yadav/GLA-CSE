@@ -1,8 +1,6 @@
 import 'package:animated_theme_switcher/animated_theme_switcher.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:glau/Providers/provider.dart';
-import 'package:provider/provider.dart';
 
 import '../utils/my_themes.dart';
 
