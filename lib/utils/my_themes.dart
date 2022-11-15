@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 class MyThemes {
   static ThemeData lightTheme(BuildContext context) => ThemeData(
+        useMaterial3: true,
         primaryColor: Colors.deepPurple,
         brightness: Brightness.light,
         fontFamily: GoogleFonts.poppins().fontFamily,
@@ -22,6 +23,7 @@ class MyThemes {
         textTheme: const TextTheme(headline6: TextStyle(color: Colors.black)),
       );
   static ThemeData darkTheme(BuildContext context) => ThemeData(
+        useMaterial3: true,
         primaryColor: Colors.deepPurple,
         brightness: Brightness.dark,
         canvasColor: darkCreamColor,
@@ -43,7 +45,7 @@ class MyThemes {
   static Color creamColor = const Color(0xfff5f5f5);
   static Color darkCreamColor = const Color.fromARGB(255, 46, 68, 80);
   static Color darkBlueishColor = const Color(0Xff403b58);
-  static Color lightBlueishColor = const Color.fromARGB(255, 33, 46, 117);
-  static Color creamColor2 = const Color.fromARGB(255, 225, 236, 255);
+  static Color lightBlueishColor = const Color.fromARGB(255, 9, 80, 13);
+  static Color creamColor2 = Colors.green.shade100;
   static Color darkCreamColor2 = const Color.fromARGB(255, 5, 10, 19);
 }

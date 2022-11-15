@@ -6,12 +6,17 @@ import 'package:glau/utils/my_themes.dart';
 import 'package:provider/provider.dart';
 
 void main() {
-  runApp(MultiProvider(
-    providers: [
-      ChangeNotifierProvider(create: (_) => Counter()),
-    ],
-    child: const MyApp(),
-  ));
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => Counter()),
+      ],
+      child: const MyApp(
+        
+      ),
+    ),
+    
+  );
 }
 
 class MyApp extends StatefulWidget {
@@ -25,7 +30,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return ThemeProvider(
-      initTheme: MyThemes.lightTheme(context),
+      initTheme: MyThemes.darkTheme(context),
       builder: (_, theme) => MaterialApp(
         initialRoute: "/home",
         debugShowCheckedModeBanner: false,
