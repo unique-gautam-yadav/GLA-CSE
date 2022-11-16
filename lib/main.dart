@@ -27,7 +27,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return ThemeProvider(
-      initTheme: MyThemes.lightTheme(context),
+      initTheme: MyThemes.darkTheme(context),
       builder: (_, theme) => MaterialApp(
         initialRoute: "/home",
         debugShowCheckedModeBanner: false,

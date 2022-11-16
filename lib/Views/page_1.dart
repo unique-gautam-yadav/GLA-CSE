@@ -1,5 +1,6 @@
 import 'package:animated_theme_switcher/animated_theme_switcher.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:glau/utils/my_themes.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -20,13 +21,34 @@ class _CounterPageState extends State<CounterPage> {
     GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
     return ThemeSwitchingArea(
       child: Scaffold(
+        appBar: AppBar(
+          elevation: 0,
+          title: const Text(
+            "GLA University",
+          ),
+          actions: [
+            ThemeSwitcher.withTheme(
+              clipper: const ThemeSwitcherCircleClipper(),
+              builder: (_, switcher, theme) => IconButton(
+                icon: theme.brightness != Brightness.light
+                    ? const Icon(CupertinoIcons.sun_max_fill)
+                    : const Icon(CupertinoIcons.moon_fill),
+                onPressed: () {
+                  switcher.changeTheme(
+                      theme: theme.brightness == Brightness.light
+                          ? MyThemes.darkTheme(context)
+                          : MyThemes.lightTheme(context));
+                },
+              ),
+            ),
+          ],
+        ),
         key: scaffoldKey,
         drawer: const AppDrawer(),
         body: SafeArea(
           child: SingleChildScrollView(
             child: Column(
               children: [
-                TopBar(scaffoldKey: scaffoldKey),
                 Padding(
                   padding: const EdgeInsets.only(
                       left: 12, right: 12, top: 12, bottom: 12),

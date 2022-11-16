@@ -45,9 +45,9 @@ class MyThemes {
       );
 
   static Color creamColor = const Color(0xfff5f5f5);
-  static Color darkCreamColor = const Color.fromARGB(255, 46, 68, 80);
   static Color darkBlueishColor = const Color(0Xff403b58);
   static Color lightBlueishColor = const Color.fromARGB(255, 9, 80, 13);
   static Color creamColor2 = Colors.green.shade100;
+  static Color darkCreamColor = const Color.fromARGB(255, 46, 68, 80);
   static Color darkCreamColor2 = const Color.fromARGB(255, 5, 10, 19);
 }
