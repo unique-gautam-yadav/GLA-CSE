@@ -50,7 +50,12 @@ class _CounterPageState extends State<CounterPage> {
         drawer: const AppDrawer(),
         body: NestedScrollView(
           headerSliverBuilder: (context, innerBoxIsScrolled) {
-            return [TopBar(scaffoldKey: scaffoldKey, hasDrawer: true,)];
+            return [
+              TopBar(
+                scaffoldKey: scaffoldKey,
+                hasDrawer: true,
+              )
+            ];
           },
           body: SingleChildScrollView(
             child: Column(
@@ -65,10 +70,28 @@ class _CounterPageState extends State<CounterPage> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            const CircleAvatar(
-                              radius: 30,
-                              backgroundImage: NetworkImage(
-                                  "https://glauniversity.in:8103/203500024.jpg"),
+                            GestureDetector(
+                              onTap: (() {
+                                showDialog(
+                                    context: context,
+                                    builder: (context) => AlertDialog(
+                                          backgroundColor:
+                                              Theme.of(context).canvasColor,
+                                          title: const Text("Profile Picture"),
+                                          content: Image.network(
+                                              "https://glauniversity.in:8103/203500024.jpg"),
+                                        ));
+                              }),
+                              child: Container(
+                                height: 70,
+                                width: 70,
+                                decoration: const BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    image: DecorationImage(
+                                        fit: BoxFit.cover,
+                                        image: NetworkImage(
+                                            "https://glauniversity.in:8103/203500024.jpg"))),
+                              ),
                             ),
                             const SizedBox(height: 10),
                             Text(
