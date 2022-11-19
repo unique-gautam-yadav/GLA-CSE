@@ -1,8 +1,10 @@
 import 'package:animated_theme_switcher/animated_theme_switcher.dart';
 import 'package:flutter/material.dart';
 import 'package:glau/Providers/provider.dart';
+import 'package:glau/Views/login.dart';
 import 'package:glau/Views/page_1.dart';
 import 'package:glau/utils/my_themes.dart';
+import 'package:glau/utils/routes.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -29,9 +31,12 @@ class _MyAppState extends State<MyApp> {
     return ThemeProvider(
       initTheme: MyThemes.darkTheme(context),
       builder: (_, theme) => MaterialApp(
-        initialRoute: "/home",
+        initialRoute: MyRoutes.loginRoute,
         debugShowCheckedModeBanner: false,
-        routes: {"/home": (context) => const CounterPage()},
+        routes: {
+          MyRoutes.homeRoute: (context) => const CounterPage(),
+          MyRoutes.loginRoute: (context) => const LoginPage(),
+        },
       ),
     );
   }

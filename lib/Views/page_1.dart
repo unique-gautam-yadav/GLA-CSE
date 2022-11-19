@@ -1,6 +1,5 @@
 import 'package:animated_theme_switcher/animated_theme_switcher.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:glau/utils/my_themes.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -21,6 +20,8 @@ class _CounterPageState extends State<CounterPage> {
     GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
     return ThemeSwitchingArea(
       child: Scaffold(
+        //
+
         // appBar: AppBar(
         //   elevation: 0,
         //   title: const Text(
@@ -43,41 +44,13 @@ class _CounterPageState extends State<CounterPage> {
         //     ),
         //   ],
         // ),
+
+        //
         key: scaffoldKey,
         drawer: const AppDrawer(),
         body: NestedScrollView(
           headerSliverBuilder: (context, innerBoxIsScrolled) {
-            return [
-              SliverAppBar(
-                actions: [
-                  ThemeSwitcher.withTheme(
-                    clipper: const ThemeSwitcherCircleClipper(),
-                    builder: (_, switcher, theme) => IconButton(
-                      icon: theme.brightness != Brightness.light
-                          ? const Icon(CupertinoIcons.sun_max_fill)
-                          : const Icon(CupertinoIcons.moon_fill),
-                      onPressed: () {
-                        switcher.changeTheme(
-                            theme: theme.brightness == Brightness.light
-                                ? MyThemes.darkTheme(context)
-                                : MyThemes.lightTheme(context));
-                      },
-                    ),
-                  ),
-                ],
-                leading: IconButton(
-                  icon: const Icon(Icons.menu_rounded),
-                  onPressed: () {
-                    scaffoldKey.currentState!.openDrawer();
-                  },
-                ),
-                title: const Text("GLA University"),
-                // automaticallyImplyLeading: false,
-                expandedHeight: 0,
-                floating: true,
-                snap: true,
-              )
-            ];
+            return [TopBar(scaffoldKey: scaffoldKey, hasDrawer: true,)];
           },
           body: SingleChildScrollView(
             child: Column(
