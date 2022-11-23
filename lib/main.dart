@@ -1,6 +1,7 @@
 import 'package:animated_theme_switcher/animated_theme_switcher.dart';
 import 'package:flutter/material.dart';
 import 'package:glau/Providers/provider.dart';
+import 'package:glau/Views/Home.dart';
 import 'package:glau/Views/login.dart';
 import 'package:glau/Views/page_1.dart';
 import 'package:glau/utils/my_themes.dart';
@@ -34,7 +35,7 @@ class _MyAppState extends State<MyApp> {
         initialRoute: MyRoutes.loginRoute,
         debugShowCheckedModeBanner: false,
         routes: {
-          MyRoutes.homeRoute: (context) => const CounterPage(),
+          MyRoutes.homeRoute: (context) => const HomePage(),
           MyRoutes.loginRoute: (context) => const LoginPage(),
         },
       ),
