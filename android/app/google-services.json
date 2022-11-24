@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "517392828037",
+    "project_id": "glau-3785f",
+    "storage_bucket": "glau-3785f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:517392828037:android:2ef6098f180445ed1ccbec",
+        "android_client_info": {
+          "package_name": "com.example.glau"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "517392828037-7icggp1e26cg91pia52j1mupq6j6tbus.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAtwjJ0GxxHedpQ6vhJdKAsdbVCmV_8S9w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "517392828037-7icggp1e26cg91pia52j1mupq6j6tbus.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

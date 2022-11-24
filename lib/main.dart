@@ -1,14 +1,19 @@
 import 'package:animated_theme_switcher/animated_theme_switcher.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:glau/Providers/provider.dart';
 import 'package:glau/Views/Home.dart';
 import 'package:glau/Views/login.dart';
-import 'package:glau/Views/page_1.dart';
 import 'package:glau/utils/my_themes.dart';
 import 'package:glau/utils/routes.dart';
 import 'package:provider/provider.dart';
+import 'firebase_options.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(
     MultiProvider(
       providers: [
