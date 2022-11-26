@@ -8,6 +8,7 @@ import 'package:glau/utils/my_themes.dart';
 import 'package:glau/utils/routes.dart';
 import 'package:provider/provider.dart';
 import 'firebase_options.dart';
+import 'main_page.dart';
 
 void main() async {
   WidgetsFlutterBinding();
@@ -37,7 +38,7 @@ class _MyAppState extends State<MyApp> {
     return ThemeProvider(
       initTheme: MyThemes.darkTheme(context),
       builder: (_, theme) => MaterialApp(
-        initialRoute: MyRoutes.loginRoute,
+        home: const MainPage(),
         debugShowCheckedModeBanner: false,
         routes: {
           MyRoutes.homeRoute: (context) => const HomePage(),

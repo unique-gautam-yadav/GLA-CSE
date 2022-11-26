@@ -1,4 +1,5 @@
 import 'package:animated_theme_switcher/animated_theme_switcher.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -112,9 +113,17 @@ class AppDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Drawer(
+    return Drawer(
       child: SafeArea(
-        child: Text("Gautam Yadav"),
+        child: Column(children: [
+          const ListTile(title: Text("Gautam Yadav")),
+          ListTile(
+              title: IconButton(
+                  onPressed: () {
+                    FirebaseAuth.instance.signOut();
+                  },
+                  icon: const Icon(Icons.logout_outlined)))
+        ]),
       ),
     );
   }

@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:glau/UI%20components/appbar.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:glau/Views/Home.dart';
+import 'package:glau/animations/fade_in.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -19,6 +20,7 @@ class _LoginPageState extends State<LoginPage> {
 
   final _rollController = TextEditingController();
   final _passwordController = TextEditingController();
+  Duration animationDuration = const Duration(milliseconds: 250);
 
   /// Email & Password Empty
   var fSnackBar = const SnackBar(
@@ -44,12 +46,6 @@ class _LoginPageState extends State<LoginPage> {
           password: _passwordController.text.trim(),
         );
         // ignore: use_build_context_synchronously
-        Navigator.pushAndRemoveUntil(
-            context,
-            MaterialPageRoute(
-              builder: (context) => const HomePage(),
-            ),
-            (route) => false);
       } else if (_rollController.text.isNotEmpty &
           _passwordController.text.isEmpty) {
         ScaffoldMessenger.of(context).showSnackBar(sSnackBar);
@@ -109,52 +105,65 @@ class _LoginPageState extends State<LoginPage> {
                     key: formKey,
                     child: Column(
                       children: [
-                        SvgPicture.asset("assets/imgs/Login2.svg", width: 200),
+                        FadeInAnimation(
+                            delay: 1,
+                            child: SvgPicture.asset("assets/imgs/Login2.svg",
+                                width: 200)),
                         const SizedBox(height: 20),
-                        TextFormField(
-                            controller: _rollController,
+                        FadeInAnimation(
+                          delay: 1.5,
+                          child: TextFormField(
+                              controller: _rollController,
+                              decoration: const InputDecoration(
+                                label: Text("Enter Your ID"),
+                                contentPadding: EdgeInsets.only(left: 20),
+                                icon: Icon(Icons.person),
+                                suffixIcon: Icon(Icons.abc_outlined),
+                                border: OutlineInputBorder(
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(50))),
+                              )),
+                        ),
+                        const SizedBox(height: 25),
+                        FadeInAnimation(
+                          delay: 2.0,
+                          child: TextFormField(
+                            controller: _passwordController,
+                            obscureText: true,
                             decoration: const InputDecoration(
-                              label: Text("Enter Your ID"),
                               contentPadding: EdgeInsets.only(left: 20),
-                              icon: Icon(Icons.person),
-                              suffixIcon: Icon(Icons.abc_outlined),
+                              icon: Icon(CupertinoIcons.lock_fill),
+                              suffixIcon: Icon(CupertinoIcons.check_mark),
                               border: OutlineInputBorder(
                                   borderRadius:
                                       BorderRadius.all(Radius.circular(50))),
-                            )),
-                        const SizedBox(height: 25),
-                        TextFormField(
-                          controller: _passwordController,
-                          obscureText: true,
-                          decoration: const InputDecoration(
-                            contentPadding: EdgeInsets.only(left: 20),
-                            icon: Icon(CupertinoIcons.lock_fill),
-                            suffixIcon: Icon(CupertinoIcons.check_mark),
-                            border: OutlineInputBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(50))),
-                            label: Text("Enter Password"),
+                              label: Text("Enter Password"),
+                            ),
                           ),
                         ),
                         const SizedBox(height: 50),
-                        ElevatedButton(
-                          style: ButtonStyle(
-                              padding:
-                                  MaterialStateProperty.all(EdgeInsets.only(
-                                left: MediaQuery.of(context).size.width * .2,
-                                right: MediaQuery.of(context).size.width * .2,
-                                top: 10,
-                                bottom: 10,
-                              )),
-                              backgroundColor:
-                                  MaterialStateProperty.all(Colors.deepPurple)),
-                          onPressed: () {
-                            signIn();
-                          },
-                          child: Text(
-                            "Login",
-                            style:
-                                TextStyle(color: Theme.of(context).canvasColor),
+                        FadeInAnimation(
+                          delay: 2.5,
+                          child: ElevatedButton(
+                            style: ButtonStyle(
+                                padding:
+                                    MaterialStateProperty.all(EdgeInsets.only(
+                                  left: MediaQuery.of(context).size.width * .2,
+                                  right: MediaQuery.of(context).size.width * .2,
+                                  top: 10,
+                                  bottom: 10,
+                                )),
+                                backgroundColor: MaterialStateProperty.all(
+                                    Colors.deepPurple)),
+                            onPressed: () {
+                              FocusManager.instance.primaryFocus!.unfocus();
+                              signIn();
+                            },
+                            child: Text(
+                              "Login",
+                              style: TextStyle(
+                                  color: Theme.of(context).canvasColor),
+                            ),
                           ),
                         ),
                         const SizedBox(height: 50)
@@ -168,5 +177,12 @@ class _LoginPageState extends State<LoginPage> {
         ),
       ),
     ));
+  }
+
+  @override
+  void dispose() {
+    _passwordController.dispose();
+    _rollController.dispose();
+    super.dispose();
   }
 }
