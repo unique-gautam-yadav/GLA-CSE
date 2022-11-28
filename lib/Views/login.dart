@@ -1,11 +1,10 @@
 import 'package:animated_theme_switcher/animated_theme_switcher.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:glau/UI%20components/appbar.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:glau/Views/Home.dart';
 import 'package:glau/animations/fade_in.dart';
+import 'package:glau/data/auth.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -22,66 +21,13 @@ class _LoginPageState extends State<LoginPage> {
   final _passwordController = TextEditingController();
   Duration animationDuration = const Duration(milliseconds: 250);
 
-  /// Email & Password Empty
-  var fSnackBar = const SnackBar(
-    content: Text('The Email & Password fields Must Fill!'),
-  );
-
-  /// Email Fill & Password Empty
-  var sSnackBar = const SnackBar(
-    content: Text('Password field Must Fill!'),
-  );
-
-  /// Email Empty & Password Fill
-  var tSnackBar = const SnackBar(
-    content: Text('Email field Must Fill!'),
-  );
   Future signIn() async {
-    try {
-      /// In the below, with if statement we have some simple validate
-      if (_rollController.text.isNotEmpty &
-          _passwordController.text.isNotEmpty) {
-        await FirebaseAuth.instance.signInWithEmailAndPassword(
-          email: _rollController.text.trim(),
-          password: _passwordController.text.trim(),
-        );
-        // ignore: use_build_context_synchronously
-      } else if (_rollController.text.isNotEmpty &
-          _passwordController.text.isEmpty) {
-        ScaffoldMessenger.of(context).showSnackBar(sSnackBar);
-      } else if (_rollController.text.isEmpty &
-          _passwordController.text.isNotEmpty) {
-        ScaffoldMessenger.of(context).showSnackBar(tSnackBar);
-      } else if (_rollController.text.isEmpty &
-          _passwordController.text.isEmpty) {
-        ScaffoldMessenger.of(context).showSnackBar(fSnackBar);
-      }
-    } catch (e) {
-      /// Showing Error with AlertDialog if the user enter the wrong Email and Password
-      showDialog<void>(
-        context: context,
-        barrierDismissible: false,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            title: const Text('Error Happened'),
-            content: const SingleChildScrollView(
-              child: Text(
-                  "The Email and Password that you Entered is Not valid ,Try Enter a valid Email and Password."),
-            ),
-            actions: <Widget>[
-              TextButton(
-                child: const Text('Got it'),
-                onPressed: () {
-                  Navigator.of(context).pop();
-                  _rollController.clear();
-                  _passwordController.clear();
-                },
-              ),
-            ],
-          );
-        },
-      );
+    if (formKey.currentState!.validate()) {
+      Authenticate.login(
+          _rollController.text, _passwordController.text, context);
     }
+    _rollController.clear();
+    _passwordController.clear();
   }
 
   @override
@@ -113,6 +59,13 @@ class _LoginPageState extends State<LoginPage> {
                         FadeInAnimation(
                           delay: 1.5,
                           child: TextFormField(
+                              validator: (value) {
+                                if (value!.isEmpty) {
+                                  return "Enter your ID";
+                                } else {
+                                  return null;
+                                }
+                              },
                               controller: _rollController,
                               decoration: const InputDecoration(
                                 label: Text("Enter Your ID"),
@@ -128,6 +81,13 @@ class _LoginPageState extends State<LoginPage> {
                         FadeInAnimation(
                           delay: 2.0,
                           child: TextFormField(
+                            validator: (value) {
+                              if (value!.isEmpty) {
+                                return "Enter your password!!";
+                              } else {
+                                return null;
+                              }
+                            },
                             controller: _passwordController,
                             obscureText: true,
                             decoration: const InputDecoration(

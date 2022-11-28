@@ -9,6 +9,7 @@ class MyThemes {
         brightness: Brightness.light,
         fontFamily: GoogleFonts.poppins().fontFamily,
         canvasColor: creamColor,
+        bottomAppBarColor: creamColor3,
         cardColor: creamColor2,
         colorScheme: ColorScheme.light(
             secondary: darkBlueishColor, onSecondary: darkBlueishColor),
@@ -26,6 +27,7 @@ class MyThemes {
   static ThemeData darkTheme(BuildContext context) => ThemeData(
         useMaterial3: true,
         cardTheme: CardTheme(color: darkCreamColor2),
+        bottomAppBarColor: darkCreamColor3,
         primaryColor: Colors.deepPurple,
         brightness: Brightness.dark,
         canvasColor: darkCreamColor,
@@ -50,4 +52,7 @@ class MyThemes {
   static Color creamColor2 = Colors.green.shade100;
   static Color darkCreamColor = const Color.fromARGB(255, 46, 68, 80);
   static Color darkCreamColor2 = const Color.fromARGB(255, 5, 10, 19);
+
+  static Color darkCreamColor3 = const Color.fromARGB(255, 16, 23, 27);
+  static Color creamColor3 = const Color.fromARGB(255, 212, 255, 203);
 }

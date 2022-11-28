@@ -34,10 +34,12 @@ class _HomePageState extends State<HomePage> {
           },
           body: pages[_curruntIndex]),
       bottomNavigationBar: Container(
-        decoration: BoxDecoration(
-            border: Border(
-                top: BorderSide(color: Theme.of(context).cardColor, width: 1))),
+        decoration: const BoxDecoration(
+            color: Colors.amber,
+            borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(50), topRight: Radius.circular(50))),
         child: BottomNavigationBar(
+          backgroundColor: Colors.transparent,
           items: const [
             BottomNavigationBarItem(
               icon: Icon(CupertinoIcons.home),
