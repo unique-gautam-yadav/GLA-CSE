@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:glau/animations/fade_in.dart';
 import 'package:glau/utils/my_themes.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:glau/Providers/provider.dart';
+import 'package:provider/provider.dart';
 import 'package:liquid_progress_indicator/liquid_progress_indicator.dart';
 
 import '../UI components/appbar.dart';
@@ -94,7 +96,7 @@ class Page1 extends StatelessWidget {
                                 builder: (context) => AlertDialog(
                                       backgroundColor:
                                           Theme.of(context).canvasColor,
-                                      title: const Text("Profile Picture"),
+                                      title: Text("Profile Picture ${context.watch<Counter>().userID}"),
                                       content: Image.network(
                                           "https://glauniversity.in:8103/203500024.jpg"),
                                     ));

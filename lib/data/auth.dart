@@ -1,5 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:glau/Providers/provider.dart';
+import 'package:provider/provider.dart';
 
 class AuthResponse {
   final int code;
@@ -13,9 +15,15 @@ class Authenticate {
       String id, String password, BuildContext context) async {
     try {
       if (id.isNotEmpty & password.isNotEmpty) {
-        await FirebaseAuth.instance.signInWithEmailAndPassword(
-          email: id.trim(),
-          password: password.trim(),
+        await FirebaseAuth.instance
+            .signInWithEmailAndPassword(
+                email: id.trim(), password: password.trim())
+            .then(
+          (value) {
+            if (value.user!.uid.isNotEmpty) {
+              context.read<Counter>().setUID(value.user!.uid);
+            }
+          },
         );
       }
     } on FirebaseAuthException {
