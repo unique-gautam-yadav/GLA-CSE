@@ -1,7 +1,9 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class Counter with ChangeNotifier {
-  late String _uid;
+  String _uid = FirebaseAuth.instance.currentUser!.uid;
+
   int _count = 0;
   bool _isDark = false;
 

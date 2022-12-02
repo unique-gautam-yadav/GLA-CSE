@@ -1,7 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:glau/Providers/provider.dart';
-import 'package:provider/provider.dart';
 
 class AuthResponse {
   final int code;
@@ -10,21 +9,16 @@ class AuthResponse {
   AuthResponse({required this.code, required this.msg});
 }
 
+final FirebaseFirestore _store = FirebaseFirestore.instance;
+final CollectionReference _reference = _store.collection("Students");
+
 class Authenticate {
   static Future<void> login(
       String id, String password, BuildContext context) async {
     try {
       if (id.isNotEmpty & password.isNotEmpty) {
-        await FirebaseAuth.instance
-            .signInWithEmailAndPassword(
-                email: id.trim(), password: password.trim())
-            .then(
-          (value) {
-            if (value.user!.uid.isNotEmpty) {
-              context.read<Counter>().setUID(value.user!.uid);
-            }
-          },
-        );
+        await FirebaseAuth.instance.signInWithEmailAndPassword(
+            email: id.trim(), password: password.trim());
       }
     } on FirebaseAuthException {
       ScaffoldMessenger.of(context).showMaterialBanner(MaterialBanner(
@@ -42,5 +36,9 @@ class Authenticate {
         ),
       ));
     }
+  }
+
+  static getStudentData(String uid) {
+    _reference.where("uid", isEqualTo: uid);
   }
 }

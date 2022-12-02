@@ -34,10 +34,10 @@ class _HomePageState extends State<HomePage> {
           },
           body: pages[_curruntIndex]),
       bottomNavigationBar: Container(
-        decoration: const BoxDecoration(
-            color: Colors.amber,
-            borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(50), topRight: Radius.circular(50))),
+        decoration: BoxDecoration(
+            color: Colors.green.withOpacity(.7),
+            borderRadius: const BorderRadius.only(
+                topLeft: Radius.circular(20), topRight: Radius.circular(20))),
         child: BottomNavigationBar(
           backgroundColor: Colors.transparent,
           items: const [
@@ -46,14 +46,20 @@ class _HomePageState extends State<HomePage> {
               label: "Home",
             ),
             BottomNavigationBarItem(
-                icon: Icon(Icons.safety_check), label: "SomeThing Else")
+                icon: Icon(Icons.safety_check), label: "SomeThing Else"),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.more_vert_outlined), label: "More")
           ],
           currentIndex: _curruntIndex,
           elevation: 50,
           onTap: (value) {
-            setState(() {
-              _curruntIndex = value;
-            });
+            if (value == 2) {
+              scaffoldKey.currentState!.openDrawer();
+            } else {
+              setState(() {
+                _curruntIndex = value;
+              });
+            }
           },
         ),
       ),
